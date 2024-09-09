@@ -1,8 +1,7 @@
 # Solar-system-simulator
 
 ## To do
-* Upload current files
-* Create 3D perspective camera
+* Create 3D perspective camera version
 * Display trivia
 * Include smaller objects
 * Create relativistic version
