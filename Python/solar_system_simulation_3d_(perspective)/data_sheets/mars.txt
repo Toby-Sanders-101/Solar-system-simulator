@@ -1,0 +1,6 @@
+Mars is the furthest terrestrial planet from the Sun. It has two moons: Phobos and Deimos. Mars is also known as the Red Planet because its iron oxide surface gives off a red hue. Its atmosphere consists of 95% Carbon Dioxide, 2.6% Nitrogen, 1.9% Argon, 0.2% Oxygen and trace amount of Carbon Monoxide and Water. Mars is also home to the largest volcano in the Solar System - Olympus Mons is three times the size Mt. Everest.
+Mass = 6.42e23 kg
+Radius = 3.39e6 m
+Surface temperature = 210 K
+Escape velocity = 5.03 km/s
+Orbital period = 687 days

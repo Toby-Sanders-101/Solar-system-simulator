@@ -1,0 +1,6 @@
+Saturn is a gas giant famous for its rings. They are made of billions of small chunks of ice and rock and extend 2.82x10^8 metres above the surface of Saturn. The planet consists of 96.3% Hydrogen, 3.3% Helium and traces of Methane.
+Mass = 5.68e26 kg
+Radius = 5.82e7 m
+Surface temperature = 134 K
+Escape velocity = 35.5 km/s
+Orbital period = 10,756 days = 29.5 years

@@ -1,21 +1,13 @@
 import datetime
 import nasa_horizons_api as api
+import constants as const
 
-planets = {"sun": "10",
-           "mercury": "199",
-           "venus": "299",
-           "moon": "301",
-           "earth": "399",
-           "mars": "499",
-           "jupiter": "599",
-           "saturn": "699",
-           "uranus": "799",
-           "neptune": "899"
-           }
+planets = const.planets
 
-def search_num_beginning(content, string):
+def search_num_beginning(content, string, concerning = True):
     if content.find(string) == -1:
-        print(f"could not find {string}")
+        if concerning:
+            print(f"could not find {string}")
         return 1
     i = content.find(string) + len(string)
     flag = True
@@ -51,20 +43,42 @@ def search_num_beginning(content, string):
         else:
             flag = False
         i += 1
+    if new_string == "":
+        new_string = "1" 
     number = multiplier * float(new_string)
     return number
 
 def read_file(file, planet):
     with open(file, "r") as f:
         content = f.read()
-        if "(g)"in content:
+        if "(g)"in content or " g  )" in content:
             additional = -3
         else:
             additional = 0
-        content = content.replace("\t","").replace("\n","").replace(" ","").replace(",","").replace("(g)","kg").replace("(kg)","kg").replace("(km)","km").upper().replace("MASS10^","MASSX10^")
-        mass_order_of_magnitude = search_num_beginning(content, "MASSX10^")
-        mass = search_num_beginning(content, "MASSX10^"+str(int(mass_order_of_magnitude))+"KG=")
-        radius = search_num_beginning(content, "VOL.MEANRADIUSKM=")
+        if planet == "phobos":
+            additional += -4
+        content = content.replace("\t","").replace("\n","").replace(" g  )","kg)").replace(" ","").replace(",","").replace("(g)","kg")
+        content = content.replace("(kg)","kg").replace("(km)","km").upper().replace("MASS10^","MASSX10^").replace("MEAN","")
+        mass_order_of_magnitude = search_num_beginning(content, "MASSX10^", False)
+        if mass_order_of_magnitude == 1:
+            mass_order_of_magnitude = search_num_beginning(content, "MASS(10^", False)
+            if mass_order_of_magnitude == 1:
+                mass_order_of_magnitude = 0
+                mass = search_num_beginning(content, "GM(KM^3/S^2)=")
+                if mass == 1:
+                    print("could not find mass of",planet)
+                    return None
+                else:
+                    mass = mass * 1e9 / const.G
+            else:
+                mass = search_num_beginning(content, "MASS(10^"+str(int(mass_order_of_magnitude))+"KG)=")
+                if mass == 1:
+                    print("could not find mass of",planet)
+                    return None
+            radius = search_num_beginning(content, "RADIUSKM=") * 1000
+        else:
+            mass = search_num_beginning(content, "MASSX10^"+str(int(mass_order_of_magnitude))+"KG=")
+            radius = search_num_beginning(content, "VOL.RADIUSKM=") * 1000
         content = content.split("$$SOE")[1]
         x = search_num_beginning(content, "X=") * 1000
         y = search_num_beginning(content, "Y=") * 1000
@@ -80,20 +94,21 @@ def read_file(file, planet):
                 "vx": vx,
                 "vy": vy,
                 "vz": vz,
-                "name": planet}
+                "name": planet,
+                "real_planet?": planet in const.real_planets}
 
 def read_data_from(file, planet, date):
-    file = fr"c:\Users\tobyj\Documents\Programming\Visual Studios\solar_system_simulation_3d_(perspective)\nasa_horizons_data/" + file
+    file = const.base_path + "nasa_horizons_data/" + file
     try:
         return read_file(file, planet)
     except:
-        print("could not find file...\nattempting to fetch data from nasa...")
+        #print("could not find file...\nattempting to fetch data from nasa...")
         try:
-            api.get_all_at(date)
-            print("data fetched...\nattempting to find file again...")
+            api.get_file_at(date, planet, const.planets[planet])
+            #print("data fetched...\nattempting to find file again...")
             return read_file(file, planet)
         except:
-            print("could not fetch data from nasa...\nplease debug...")
+            print(f"could not fetch {planet} from nasa...please debug...")
             quit()
 
 
@@ -101,7 +116,9 @@ def read_all_at(date):
     data = []
     for planet in planets.keys():
         file_name = planet+"_"+date+".txt"
-        data.append(read_data_from(file_name, planet, date))
+        x = read_data_from(file_name, planet, date)
+        if x != None:
+            data.append(x)
     return data
 
 def read_all_today():

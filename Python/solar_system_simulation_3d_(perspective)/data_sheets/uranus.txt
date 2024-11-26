@@ -1,0 +1,6 @@
+Uranus is a gas giant with 28 small moons. It has a 90 degree tilt which makes it look like it is rolling around the sun. It was the first planet found with the aid of a telescope, by William Herschel in 1781. Its atmosphere is composed of 83% Hydrogen, 15% Helium and 2% Methane.
+Mass = 8.68e25 kg
+Radius = 2.54e7 m
+Surface temperature = 76 K
+Escape velocity = 21.3 km/s
+Orbital period = 30,685 days = 84.1 years

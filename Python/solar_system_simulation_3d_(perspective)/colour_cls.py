@@ -10,9 +10,8 @@ class Colour:
         flag = True
 
         if r == -1 and g == -1 and b == -1:
-            self.r = random.randint(0, 255)
-            self.g = random.randint(0, 255)
-            self.b = min(max(450-self.r-self.g,0), 255)#random.randint(0, 255)
+            t = (Vector3(random.random(), random.random(), random.random()).norm*256).tuple
+            self.r, self.g, self.b = int(t[0]), int(t[1]), int(t[2])
             self.alpha = alpha
         else:
             if r > 255:
@@ -41,20 +40,19 @@ class Colour:
 
         while flag and count < 20:
             if count>0:
-                self.r = random.randint(0, 255)
-                self.g = random.randint(0, 255)
-                self.b = min(max(450-self.r-self.g,0), 255)#random.randint(0, 255)
+                t = (Vector3(random.random(), random.random(), random.random()).norm*256).tuple
+                self.r, self.g, self.b = int(t[0]), int(t[1]), int(t[2])
                 self.alpha = alpha
 
             flag = False
             for colour in all_colours:
                 if self.compare_colour(colour):
                     flag = True
-                    print(f"flagged: {self.tuple}, {colour.tuple}")
+                    #print(f"flagged: {self.tuple}, {colour.tuple}")
             
             count += 1
 
-        all_colours.append(self)
+        #all_colours.append(self)
     
     @property
     def tuple(self) -> tuple:
@@ -67,4 +65,10 @@ class Colour:
     def compare_colour(self, other: Self) -> bool:
         return (self.asVector3-other.asVector3).mag < 60
 
-all_colours = [Colour(0,0,0), Colour(255,255,255)]
+all_colours = [Colour(0,0,0), Colour(255,255,255), Colour(127,127,127)]
+
+predefined_colours = {"earth": Colour(30,30,230),
+                      "sun": Colour(200,200,0),
+                      "moon": Colour(80,80,80),
+                      "mars": Colour(200,80,30),
+                      "jupiter": Colour(200,0,100)}

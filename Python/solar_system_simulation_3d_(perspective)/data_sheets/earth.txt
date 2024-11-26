@@ -1,0 +1,6 @@
+Earth is the only planet in the entire universe known (by Earthlings) to support life. We choose to abuse the planet nonetheless. Earth is the third closest planet to the Sun, has one moon, and is terrestrial. Its large (yet weak) electromagnetic field (AKA its magnetosphere) protects it from damaging solar and cosmic rays, allowing it to have an abundant atmosphere and a surface that it capable of cultivating organisms. Its atmosphere consists of 78% Nitrogen, 21% Oxygen and 1% Argon.
+Mass = 5.97e24 kg
+Radius = 6.38e6 m
+Surface temperature = 288 K
+Escape velocity = 11.2 km/s
+Orbital period = 365 days

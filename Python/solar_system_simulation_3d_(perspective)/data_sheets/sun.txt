@@ -1,0 +1,5 @@
+Our Sun sits at the centre of our Solar System with all the planets orbiting it. It is a yellow dwarf star, consisting of 74% Hydrogen, 24% Helium and 2% other elements. Its technical classification is G2 V. G2 refers to its yellow-white colour and V means it is a hydrogen-burning, main-sequence star. It is thought to be 4.5 billion years old with another billion years ahead of it.
+Mass = 1.99e30 kg
+Radius = 6.96e8 m
+Surface temperature = 5772 K
+Escape velocity = 618 km/s

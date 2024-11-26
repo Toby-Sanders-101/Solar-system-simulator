@@ -1,0 +1,6 @@
+Jupiter is by far the most massive planet in the Solar System and is the closest Jovian planet to the Sun. It has 95 officially recognised moons including the Ganymede, the largest moon in the Solar System (even bigger than Mercury). Jupiter is made of 90% Hydrogen and 10% Helium.
+Mass = 1.90e27 kg
+Radius = 6.99e7 m
+Surface temperature = 165 K
+Escape velocity = 59.5 km/s
+Orbital period = 4,333 days = 11.9 years

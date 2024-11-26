@@ -1,0 +1,6 @@
+Venus is the second closest planet to the Sun and is also the hottest. Like Mercury, it is terrestrial and lacks any moons. Its atmosphere consists of 96% Carbon Dioxide and 4% Nitrogen. Venus has the strange property that its days are actually longer than its years due to its Sidereal Rotation Period of -5832 hours!
+Mass = 4.87e24 kg
+Radius = 6.05e6 m
+Surface temperature = 737 K
+Escape velocity = 10.4 km/s
+Orbital period = 225 days

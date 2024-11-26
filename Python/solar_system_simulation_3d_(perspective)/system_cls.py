@@ -6,41 +6,25 @@ from planet_cls import *
 from camera import Camera
 
 class System3:
-    COM_ARR_COUNT = 8
+    TRAIL_LENGTH = const.trail_length
 
-    def __init__(self, objects: List[Object3], dt, cam: Camera):
-        self.com = Vector3(0,0,0)
-        self.com_vel = Vector3(0,0,0)
-        self.com_arr: List[Vector3] = []
+    def __init__(self, real_planets: List[Planet], objects: List[Planet], dt, cam: Camera):
+        self.com = COM(Vector3.zero, Vector3.zero, objects, "com")
         self.dt = dt
+        self.real_planets = real_planets
         self.objects = objects
-        self.calc_com()
-        self.com_arr = [self.com for _ in range(self.COM_ARR_COUNT)]
 
-        self.scroll_sf = 1
-        self.it = 0
+        self.it = 1
         self.time = datetime.datetime.today()
-        self.centre = Vector2(0, 0)
+
+        self.tracking: Object3 = self.com
+        self.trailIndex = 0
 
         self.cam = cam
         cam.planets = objects
-    
-    def calc_com(self):
-        total = Vector3(0,0,0)
-        mass = 0
-        for obj in self.objects:
-            total = total + obj.pos * obj.m
-            mass = mass + obj.m
-        total = total / mass
-        self.com = total
-    
-    def calc_com_vel(self):
-        self.com_vel = (self.com - self.com_arr.pop(0)) / (self.COM_ARR_COUNT * self.dt)
-        self.com_arr.append(self.com)
-    
+        cam.real_planets = real_planets
+
     def move_all(self):
-        self.calc_com()
-        self.calc_com_vel()
         for body in self.objects:
             for obj in self.objects:
                 if obj != body:
@@ -48,7 +32,30 @@ class System3:
             body.move(self.dt)
         self.time = self.time + datetime.timedelta(seconds=self.dt)
 
+    def addToTrails(self):
+        for body in self.objects:
+            body.addToTrail(self.trailIndex)
+        self.com.addToTrail(self.trailIndex)
+        self.trailIndex += 1
+        self.trailIndex %= self.TRAIL_LENGTH
+
+    def switchToCOM(self):
+        if self.tracking != self.com:
+            self.tracking = self.com
+            self.cam.reset_pos()
+
     def update_all(self):
+        self.com.prev_pos = self.com.pos
+
         self.move_all()
-        self.cam.display(self.com, self.com_vel, self.time)
+
+        self.com.calc_pos()
+        self.com.calc_vel(self.dt)
+
+        self.cam.tracking = self.tracking
+
+        self.cam.display(self.time)
+        if self.it % 2 == 0:
+            self.addToTrails()
+        self.it += 1
 

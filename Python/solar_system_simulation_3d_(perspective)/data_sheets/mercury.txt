@@ -1,0 +1,6 @@
+Mercury (named after Freddie) is the smallest planet in the Solar System and has no moons. It is a terrestrial planet with minimal atmosphere. The little atmosphere it has consists of primarily Sodium, Magnesium, Oxygen and Hydrogen. Due to its lack of atmosphere, it is not the hottest planet, however it does hold the title for the fastest planet. 
+Mass = 3.30e23 kg
+Radius = 2.44e6 m
+Surface temperature = 93 K to 703 K
+Escape velocity = 4.3 km/s
+Orbital period = 88 days

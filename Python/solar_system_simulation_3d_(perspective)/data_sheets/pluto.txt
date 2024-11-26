@@ -1,0 +1,6 @@
+Pluto is a dwarf planet thought to have a rocky core. Despite its small size, Pluto has five moons including Charon - which is half the size of Pluto, making it the greatest moon to planet ratio in the Solar System. In addition, Charon orbits Pluto at the same angular velocity as Pluto rotates, therefore it never sets or rises, only hovers above one spot. Pluto's atmosphere is 99% Nitrogen, 0.5% Methane and has traces of Carbon Monoxide.
+Mass = 1.30e22 kg
+Radius = 1.19e6 m
+Surface temperature = 31 K
+Escape velocity = 1.21 km/s
+Orbital period = 90,560 days = 248.1 years

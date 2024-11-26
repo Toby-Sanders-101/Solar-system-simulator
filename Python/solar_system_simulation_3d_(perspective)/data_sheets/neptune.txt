@@ -1,0 +1,6 @@
+Neptune is the furthest planet from the sun. It is Jovian and has 16 moons. It has predicted by Urbain Le Verrier (who also named it) and was discovered by Johann Galle in 1846. Neptune's atmosphere is comprised of 79.7% Hydrogen, 18.8% Helium and 1.5% Methane.
+Mass = 1.02e26 kg
+Radius = 2.46e7 m
+Surface temperature = 72 K
+Escape velocity = 23.5 km/s
+Orbital period = 60,189 = 164.9 years
