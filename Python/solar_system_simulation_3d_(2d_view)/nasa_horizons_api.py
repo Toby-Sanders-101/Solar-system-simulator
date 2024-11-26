@@ -1,5 +1,6 @@
 import requests
 import datetime
+import pathlib
 
 planets = {"sun": "10",
            "mercury": "199",
@@ -12,6 +13,8 @@ planets = {"sun": "10",
            "uranus": "799",
            "neptune": "899"
            }
+
+base_path = pathlib.Path(__file__).parent.resolve().__str__()
 
 #date = "2024-08-17"
 #url = f"https://ssd.jpl.nasa.gov/api/horizons.api?format=text&EPHEM_TYPE='VECTORS'&TLIST=\
@@ -28,7 +31,7 @@ def get_all_at(date):
         response = requests.get(url+value)
 
         if response.status_code == 200:
-            f = open(fr"c:\Users\tobyj\Documents\Programming\Visual Studios\solar_system_simulation_3d\nasa_horizons_data\{key}_{date}.txt","w")
+            f = open(base_path + fr"/nasa_horizons_data/{key}_{date}.txt","w")
             f.write(response.text)
             f.close()
         else:

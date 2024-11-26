@@ -1,5 +1,8 @@
 import datetime
 import nasa_horizons_api as api
+import pathlib
+
+base_path = pathlib.Path(__file__).parent.resolve().__str__()
 
 planets = {"sun": "10",
            "mercury": "199",
@@ -83,7 +86,7 @@ def read_file(file, planet):
                 "name": planet}
 
 def read_data_from(file, planet, date):
-    file = fr"c:\Users\tobyj\Documents\Programming\Visual Studios\solar_system_simulation_2d\nasa_horizons_data/" + file
+    file = base_path + "/nasa_horizons_data/" + file
     try:
         return read_file(file, planet)
     except:
